@@ -1,5 +1,5 @@
 import styles from "./CategoryListItem.module.css";
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 
 const CategoryListItem = (props) => {
     return (
