@@ -2,15 +2,43 @@ import { Card, CardActions, CardContent, CardMedia, Typography } from '@mui/mate
 import React from 'react'
 import Button from '../Button'
 import styles from './ProductCard.module.css'
+import { CART } from '../../../../constants/constants'
+
 
 const ProductCard = ({
     cardImage,
     title,
     description,
     price,
-    handleBuy,
-    handleAddToFavorite,
+    id,
 }) => {
+
+    const getCart = () => {
+        const cart = localStorage.getItem(CART);
+
+        return cart ? JSON.parse(cart) : [];
+    }
+    
+        const hadleAddToCart = () => {
+            const cart = getCart();
+            
+            const product = {
+                id,
+                price,
+                title,
+                quantity: 1,
+            }
+            
+            const foundedItem = cart.find((item) => item.id === product.id);
+
+            if (foundedItem) {
+                foundedItem.quantity += 1;
+            } else {
+                cart.push(product);
+            }
+
+            localStorage.setItem(CART, JSON.stringify(cart));
+        }
     return (
         <Card className={styles.card}>
             <CardMedia
@@ -27,8 +55,8 @@ const ProductCard = ({
                 </Typography>
             </CardContent>
             <CardActions>
-                <Button size='small'  onClick={handleBuy}>Buy {price}$</Button>
-                <Button size='small' variant='text' onClick={handleAddToFavorite}>Save</Button>
+                <Button size='small'  onClick={hadleAddToCart}>Buy {price}$</Button>
+                <Button size='small' variant='text' >Save</Button>
             </CardActions>
         </Card>
     )

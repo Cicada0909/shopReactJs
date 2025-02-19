@@ -20,6 +20,7 @@ const ProductsListItem = (props) => {
             title={props.title}
             description={props.description}
             price={props.price}
+            id={props.id}
         />
     )
 }

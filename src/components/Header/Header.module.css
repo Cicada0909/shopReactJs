@@ -1,0 +1,12 @@
+.header {
+    padding: 1.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.wrapper_btns {
+    display: flex;
+    gap: 0.8rem;
+}
+
