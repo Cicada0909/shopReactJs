@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import axios from 'axios';
 import ProductsListItem from "../ProductsListItem/ProductsListItem";
 import styles from "./ProductsList.module.css"
-import { Skeleton, Box } from "@mui/material";
+import { Skeleton, Box, Pagination } from "@mui/material";
 
 
 
@@ -11,36 +11,32 @@ export const ProductsList = () => {
     const { category } = useParams();
 
     const [products, setProducts] = useState([]);
-    const [featuredProducts, setFeaturedProducts] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
 
-    useEffect(() => {
-        setIsLoading(true);
+    const [page, setPage] = useState(1);
+    const LIMIT = 9;
+    const [totalPages, setTotalPages] = useState();
 
-        axios
-            .get(`https://dummyjson.com/products/category/${category}`)
-            .then(response => {
-                setProducts(response.data.products);
-            })
-            .finally(() => {
-                setIsLoading(false);
-            })
+    useEffect(() => {
+        setPage(1);
     }, [category]);
 
     useEffect(() => {
         setIsLoading(true);
-
-        axios
-            .get("https://dummyjson.com/products?limit=10&skip=0")
+        axios.get(`https://dummyjson.com/products/category/${category}`)
             .then(response => {
-                setFeaturedProducts(response.data.products);
-            })
-            .finally(() => {
-                setIsLoading(false);
+                const totalProducts = response.data.total;
+                setTotalPages(Math.ceil(totalProducts / LIMIT));
             })
 
+        const url = category
+            ? `https://dummyjson.com/products/category/${category}?limit=${LIMIT * page}&skip=${(page - 1) * LIMIT}`
+            : "https://dummyjson.com/products?limit=9&skip=0";
 
-    }, []);
+        axios.get(url)
+            .then(response => setProducts(response.data.products))
+            .finally(() => setIsLoading(false));
+    }, [category, page]);
 
     if (isLoading) {
         return (
@@ -56,26 +52,43 @@ export const ProductsList = () => {
         );
     }
 
+    const handleChangePage = (_, value) => {
+        setPage(value);
+    };
+
 
     return (
-        <div className={styles.wrapper}>
-            {category ?
-                products.map((item) => (
+        <div>
+            <div className={styles.wrapperContent}>
+                {products.map(item => (
                     <ProductsListItem
                         key={item.id}
                         {...item}
                     />
-                ))
-                :
-                featuredProducts.map((item) => (
-                    <ProductsListItem
-                        key={item.id}
-                        {...item}
-                    />
-                ))
-            }
+                ))}
+            </div>
+
+            <div className={styles.wrapperPagination}>
+                {totalPages > 1 && (
+                    <Box sx={{ display: "flex", justifyContent: "center", marginTop: 3 }}>
+                        <Pagination
+                            count={totalPages}
+                            page={page}
+                            onChange={handleChangePage}
+                            color="primary"
+                            showFirstButton
+                            showLastButton
+                        />
+                    </Box>
+                )}
+            </div>
+
         </div>
-    )
+
+
+
+
+    );
 }
 
 export default ProductsList
