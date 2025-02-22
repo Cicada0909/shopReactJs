@@ -1,0 +1,23 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.cart__items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+}
+
+.cart__actions {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+}
+
+.card__button {
+    width: 200px;
+}
+

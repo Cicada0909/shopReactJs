@@ -11,6 +11,8 @@ const ProductCard = ({
     description,
     price,
     id,
+    isInCart,
+    quantity,
 }) => {
 
     const getCart = () => {
@@ -27,6 +29,8 @@ const ProductCard = ({
                 price,
                 title,
                 quantity: 1,
+                cardImage,
+                isInCart,
             }
             
             const foundedItem = cart.find((item) => item.id === product.id);
@@ -54,10 +58,13 @@ const ProductCard = ({
                     {description}
                 </Typography>
             </CardContent>
-            <CardActions>
+            {isInCart && <div className={styles.card__items}><Typography gutterBottom component={'div'}>Quantity: {quantity}</Typography>
+            <Typography gutterBottom component={'div'}>Total: {quantity * price} $</Typography> </div>}
+
+            {!isInCart && <CardActions>
                 <Button size='small'  onClick={hadleAddToCart}>Buy {price}$</Button>
                 <Button size='small' variant='text' >Save</Button>
-            </CardActions>
+            </CardActions>}
         </Card>
     )
 }
