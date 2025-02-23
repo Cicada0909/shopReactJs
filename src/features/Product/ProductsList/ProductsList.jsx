@@ -64,6 +64,7 @@ export const ProductsList = () => {
                     <ProductsListItem
                         key={item.id}
                         {...item}
+                        cardImage = {item.thumbnail}
                     />
                 ))}
             </div>

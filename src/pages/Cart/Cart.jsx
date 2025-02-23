@@ -5,6 +5,7 @@ import ProductCard from '../../components/ui/Button/ProductCard/ProductCard'
 import Button from '../../components/ui/Button/Button'
 import axios from 'axios'
 import { Typography } from '@mui/material'
+import { useSearchParams } from 'react-router-dom'
 
 export const Cart = () => {
     const cart = JSON.parse(localStorage.getItem(CART)) || [];
@@ -35,6 +36,22 @@ export const Cart = () => {
         // console.log(totalPrice);
         
     }, [cart]);
+
+    
+    //удали
+    // const [searchParams] = useSearchParams();
+    // const search = searchParams.get("search") || ""
+    // console.log(search);
+    // if (search) {
+    //     console.log("есть какйо то поиск");
+        
+    // } else {
+    //     console.log("нету");
+        
+    // }
+    //удали
+    
+    
     
 
     const hadleBuyToCart = async () => {
