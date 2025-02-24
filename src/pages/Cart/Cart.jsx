@@ -6,24 +6,20 @@ import Button from '../../components/ui/Button/Button'
 import axios from 'axios'
 import { Typography } from '@mui/material'
 import { useSearchParams } from 'react-router-dom'
+import ProductsList from '../../features/Product/ProductsList/ProductsList'
+
 
 export const Cart = () => {
     const cart = JSON.parse(localStorage.getItem(CART)) || [];
+    
 
-    // const hadleBuyToCart = async () => {
+    const [searchParams, setSearchParams] = useSearchParams();
+    const search = searchParams.get("search") || ""
 
+    useEffect(() => {
+        setSearchParams({});
+    }, []);
 
-    //     const response = await fetch(`https://dummyjson.com/carts/add`, {
-    //         method: "POST",
-    //         headers: { 'Content-Type': 'application/json' },
-    //         body: JSON.stringify({
-    //             userId: 1,
-    //             products: cart,
-    //         }),
-    //     });
-
-
-    // }
     const [totalPrice, setTotalPrice] = useState(0);
 
     useEffect(() => {
@@ -37,38 +33,26 @@ export const Cart = () => {
         
     }, [cart]);
 
-    
-    //удали
-    // const [searchParams] = useSearchParams();
-    // const search = searchParams.get("search") || ""
-    // console.log(search);
-    // if (search) {
-    //     console.log("есть какйо то поиск");
-        
-    // } else {
-    //     console.log("нету");
-        
-    // }
-    //удали
-    
-    
-    
-
     const hadleBuyToCart = async () => {
         try {
             const response = await axios.post("https://dummyjson.com/carts/add", {
                 userId: 1,
                 products: cart,
             });
-            // console.log(response);
+            console.log(response);
             
         } catch (e) {
 
         }
     };
 
+    if (search) {
+        return <ProductsList />;
+    }
+
 
     return (
+        
         <div className={styles.wrapper}>
             <div className={styles.cart__items}>
                 {cart.map(item => (

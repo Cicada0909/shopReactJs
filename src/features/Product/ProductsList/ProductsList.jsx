@@ -4,6 +4,7 @@ import axios from 'axios';
 import ProductsListItem from "../ProductsListItem/ProductsListItem";
 import styles from "./ProductsList.module.css"
 import { Skeleton, Box, Pagination } from "@mui/material";
+import useIsDesktop from "../../../hooks/useIsDesktop/useIsDesktop";
 
 
 
@@ -14,53 +15,14 @@ export const ProductsList = () => {
     const [isLoading, setIsLoading] = useState(false);
 
     const [page, setPage] = useState(1);
-    const LIMIT = 9;
+    const LIMIT = 12;
     const [totalPages, setTotalPages] = useState();
 
     const [searchParams, setSearchParams] = useSearchParams();
     const search = searchParams.get("search") || ""
 
-    const [mobile, setMobile] = useState(0);
-
-const handleWindowSizeChange = () => {
-  const widthWindow = window.innerWidth;
-  if (widthWindow) {
-    setMobile(widthWindow)
-  } 
-  
-  
-  
-  
-  
-}
-console.log(mobile);
-
-if (mobile < 500) {
-    console.log("ismobile");
-    
-}
-
-
-
-
-
-// useState
-
-// useEffect(() => {
-
-// }, [])
-
-useEffect(() => {
-  window.addEventListener('resize', handleWindowSizeChange);
-  
-  return () => {
-    window.removeEventListener('resize', handleWindowSizeChange);
-    console.log("dsf");
-  }
-}, []);
-
-
-
+    const isDesctop = useIsDesktop(500);
+    console.log(isDesctop);
 
     useEffect(() => {
         setPage(1);
@@ -86,10 +48,10 @@ useEffect(() => {
             ? `https://dummyjson.com/products/search?q=${search}`
             : category
                 ? `https://dummyjson.com/products/category/${category}?limit=${LIMIT}&skip=${(page - 1) * LIMIT}`
-                : "https://dummyjson.com/products?limit=9&skip=0";
+                : "https://dummyjson.com/products?limit=12&skip=0";
 
         console.log(url);
-        
+
 
 
         // const url = search
