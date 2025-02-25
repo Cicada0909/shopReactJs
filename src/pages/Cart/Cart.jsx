@@ -7,11 +7,12 @@ import axios from 'axios'
 import { Typography } from '@mui/material'
 import { useSearchParams } from 'react-router-dom'
 import ProductsList from '../../features/Product/ProductsList/ProductsList'
+import { useCart } from '../../contexts/CartContext/CartContext'
 
 
 export const Cart = () => {
-    const cart = JSON.parse(localStorage.getItem(CART)) || [];
     
+    const {cart, addToCart, decreseItemFromCart } = useCart();
 
     const [searchParams, setSearchParams] = useSearchParams();
     const search = searchParams.get("search") || ""
@@ -63,6 +64,7 @@ export const Cart = () => {
                         cardImage={item.cardImage}
                         quantity={item.quantity}
                         price={item.price}
+                        
                     />
                 ))}
             </div>

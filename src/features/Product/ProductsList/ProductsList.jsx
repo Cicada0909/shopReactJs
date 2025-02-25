@@ -21,8 +21,8 @@ export const ProductsList = () => {
     const [searchParams, setSearchParams] = useSearchParams();
     const search = searchParams.get("search") || ""
 
-    const isDesctop = useIsDesktop(500);
-    console.log(isDesctop);
+    // const isDesctop = useIsDesktop(500);
+    // console.log(isDesctop);
 
     useEffect(() => {
         setPage(1);
