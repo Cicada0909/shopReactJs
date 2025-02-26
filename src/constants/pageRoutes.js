@@ -18,8 +18,15 @@ const commonRoutes = {
     category: category,
 };
 
+const favorites = "/favorites";
+
+const favoritesRoutes = {
+    favorites: favorites,
+};
+
 export const pageRoutes = {
     commonRoutes,
     cartRoutes,
     productRoutes,
+    favoritesRoutes,
 };

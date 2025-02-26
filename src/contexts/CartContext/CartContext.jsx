@@ -9,6 +9,9 @@ export const CartProvider = ({ children }) => {
     const getCart = () => {
         const cartLS = localStorage.getItem(CART);
 
+        console.log(cartLS);
+        
+
         return cartLS ? JSON.parse(cartLS) : [];
     }
 
@@ -52,15 +55,26 @@ export const CartProvider = ({ children }) => {
         setCart((prev) => {
             const updatedCart = prev.map(item => item.id === id ? {...item, quantity: item.quantity - 1} : item)
             .filter(item => item.quantity > 0);
-
+            console.log("132");
+            
             updateLocalStorage(updatedCart);
+            
             return updatedCart;
         })
     }
 
+    const increaseItemInCart = (id) => {
+        setCart((prev) => {
+            const updatedCart = prev.map(item => item.id ===id ? {...item, quantity: item.quantity + 1} : item)
 
+            updateLocalStorage(updatedCart);
+
+            return updatedCart;
+        })
+    }
+    
     return (
-        <CartContext.Provider value={{ cart, addToCart, decreseItemFromCart }}>
+        <CartContext.Provider value={{ cart, addToCart, decreseItemFromCart, increaseItemInCart }}>
             {children}
         </CartContext.Provider>
     )

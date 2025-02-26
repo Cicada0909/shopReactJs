@@ -12,7 +12,7 @@ import { useCart } from '../../contexts/CartContext/CartContext'
 
 export const Cart = () => {
     
-    const {cart, addToCart, decreseItemFromCart } = useCart();
+    const {cart, decreseItemFromCart, increaseItemInCart } = useCart();
 
     const [searchParams, setSearchParams] = useSearchParams();
     const search = searchParams.get("search") || ""
@@ -29,7 +29,7 @@ export const Cart = () => {
             const totalPriceProduct = item.quantity * item.price;
             totalSum += totalPriceProduct;
         })
-        setTotalPrice(totalSum)
+        setTotalPrice(totalSum.toFixed(2))
         // console.log(totalPrice);
         
     }, [cart]);
@@ -64,7 +64,8 @@ export const Cart = () => {
                         cardImage={item.cardImage}
                         quantity={item.quantity}
                         price={item.price}
-                        
+                        hadleDelToCart={() => decreseItemFromCart(item.id)}
+                        handleIncreaseCart={() => increaseItemInCart(item.id)}
                     />
                 ))}
             </div>

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { useParams, useSearchParams } from "react-router-dom";
+import { Link, useParams, useSearchParams } from "react-router-dom";
 import axios from 'axios';
 import ProductsListItem from "../ProductsListItem/ProductsListItem";
 import styles from "./ProductsList.module.css"
@@ -85,11 +85,13 @@ export const ProductsList = () => {
         <div>
             <div className={styles.wrapperContent}>
                 {products.map(item => (
+                    <Link to={`/product/${item.id}`} style={{ textDecoration: "none", color: "inherit" }}>
                     <ProductsListItem
                         key={item.id}
                         {...item}
                         cardImage={item.thumbnail}
                     />
+                    </Link>
                 ))}
             </div>
 

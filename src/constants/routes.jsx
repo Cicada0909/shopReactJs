@@ -4,6 +4,7 @@ import Home from "../pages/Home/Home";
 import { Cart } from "../pages/Cart/Cart";
 import Product from "../pages/Product/Product";
 import { pageRoutes } from "./pageRoutes";
+import Favorites from "../pages/Favorites/Favorites";
 
 const router = createBrowserRouter([
     {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
             {
                 path: pageRoutes.productRoutes.product,
                 element: <Product />
+            },
+            {
+                path: pageRoutes.favoritesRoutes.favorites,
+                element: <Favorites />
             },
 
         ]

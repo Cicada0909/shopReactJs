@@ -10,8 +10,26 @@
 .card__items {
     display: flex;
     justify-content: space-around;
+    align-items: center;
     padding: 1rem;
     text-transform: uppercase;
     background-color: rgb(224, 224, 224);
+}
+
+.card__actions {
+    display: flex;
+    gap: 0.4rem;
+    align-items: center;
+    width: 40%;
+}
+
+.actions__button {
+    font-size: 1.5rem;
+    width: 15%;
+    height: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 0.4rem;
 }
 

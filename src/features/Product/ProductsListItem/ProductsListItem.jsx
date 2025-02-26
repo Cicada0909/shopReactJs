@@ -12,19 +12,20 @@ const ProductsListItem = ({
     id,
     isInCart,
 }) => {
-    const {cart, addToCart } = useCart();
+    const {cart, addToCart} = useCart();
 
     console.log(cart);
     
+    const formattedPrice = Number(price.toFixed(2));
     
     return (
         <ProductCard
             cardImage={cardImage}
             title={title}
             description={description}
-            price={price}
+            price={formattedPrice}
             id={id}
-            hadleAddToCart={() => addToCart({ id, price, title })}
+            hadleAddToCart={() => addToCart({ id, price, title, cardImage })}
         />
     )
 }

@@ -12,9 +12,12 @@ const ProductCard = ({
     hadleAddToCart,
     isInCart,
     quantity,
+    hadleDelToCart,
+    handleIncreaseCart,
+    id,
 }) => {
 
-    
+
     return (
         <Card className={styles.card}>
             <CardMedia
@@ -30,11 +33,20 @@ const ProductCard = ({
                     {description}
                 </Typography>
             </CardContent>
-            {isInCart && <div className={styles.card__items}><Typography gutterBottom component={'div'}>Quantity: {quantity}</Typography>
-            <Typography gutterBottom component={'div'}>Total: {quantity * price} $</Typography> </div>}
+            {isInCart &&
+                <div className={styles.card__items}>
+                    <div className={styles.card__actions}>
+                        <button className={styles.actions__button} size='small' onClick={hadleDelToCart}>–</button>
+                        <Typography gutterBottom component={'div'}>Quantity: {quantity}</Typography>
+                        <button className={styles.actions__button} size='small' onClick={handleIncreaseCart}>+</button>
+                    </div>
+                    <Typography gutterBottom component={'div'}>Total: {(quantity * price).toFixed(2)} $</Typography>
+                    <Button size='small' onClick={hadleDelToCart}>Delete</Button>
+                </div>}
+
 
             {!isInCart && <CardActions>
-                <Button size='small'  onClick={hadleAddToCart}>Buy {price}$</Button>
+                <Button size='small' onClick={hadleAddToCart}>Buy {price}$</Button>
                 <Button size='small' variant='text' >Save</Button>
             </CardActions>}
         </Card>
