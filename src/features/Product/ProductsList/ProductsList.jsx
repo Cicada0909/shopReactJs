@@ -85,9 +85,8 @@ export const ProductsList = () => {
         <div>
             <div className={styles.wrapperContent}>
                 {products.map(item => (
-                    <Link to={`/product/${item.id}`} style={{ textDecoration: "none", color: "inherit" }}>
+                    <Link key={item.id} to={`/product/${item.id}`} style={{ textDecoration: "none", color: "inherit" }}>
                     <ProductsListItem
-                        key={item.id}
                         {...item}
                         cardImage={item.thumbnail}
                     />

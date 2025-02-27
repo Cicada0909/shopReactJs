@@ -27,7 +27,15 @@ const ProductDetails = (product) => {
                         <li className={styles.product_details__info_item}>{product.warrantyInformation}</li>
                     </ul>
                 </div>
-                <Button  className={styles.product_details__button} size='large' variant='outlined' onClick={() => addToCart({ id, price, title, cardImage })}>Buy</Button>
+                <Button  className={styles.product_details__button} size='large' variant='outlined' onClick={() => 
+                    addToCart({ 
+                        id: product.id, 
+                        price: product.price, 
+                        title: product.title, 
+                        cardImage: 
+                        product.images?.[0]})}>
+                        Buy
+                        </Button>
 
             </div>
         </div>
