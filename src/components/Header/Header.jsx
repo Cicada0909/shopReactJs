@@ -28,7 +28,7 @@ const Header = () => {
 
       <div className={styles.wrapper__btns}>
         <Link to={pageRoutes.cartRoutes.cart} className={styles.btn}><img src={heart} alt="cart" /></Link>
-        <Link to={""} className={styles.btn}><img src={heart} alt="heart" /></Link>
+        <Link to={pageRoutes.favoritesRoutes.favorites} className={styles.btn}><img src={heart} alt="heart" /></Link>
       </div>
     </header>
   )
