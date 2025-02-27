@@ -12,7 +12,7 @@ import { useCart } from '../../contexts/CartContext/CartContext'
 
 export const Cart = () => {
     
-    const {cart, decreseItemFromCart, increaseItemInCart } = useCart();
+    const {cart, decreseItemFromCart, increaseItemInCart, removeItemFromCart } = useCart();
 
     const [searchParams, setSearchParams] = useSearchParams();
     const search = searchParams.get("search") || ""
@@ -66,6 +66,7 @@ export const Cart = () => {
                         price={item.price}
                         hadleDelToCart={() => decreseItemFromCart(item.id)}
                         handleIncreaseCart={() => increaseItemInCart(item.id)}
+                        handleRemoveCart={() => removeItemFromCart(item.id)}
                     />
                 ))}
             </div>

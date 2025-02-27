@@ -14,6 +14,7 @@ const ProductCard = ({
     quantity,
     hadleDelToCart,
     handleIncreaseCart,
+    handleRemoveCart,
     id,
 }) => {
 
@@ -41,7 +42,7 @@ const ProductCard = ({
                         <button className={styles.actions__button} size='small' onClick={handleIncreaseCart}>+</button>
                     </div>
                     <Typography gutterBottom component={'div'}>Total: {(quantity * price).toFixed(2)} $</Typography>
-                    <Button size='small' onClick={hadleDelToCart}>Delete</Button>
+                    <Button size='small' onClick={handleRemoveCart}>Delete</Button>
                 </div>}
 
 
