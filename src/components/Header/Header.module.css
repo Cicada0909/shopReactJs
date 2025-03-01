@@ -1,12 +1,24 @@
 .header {
-    padding: 1.6rem;
+    padding: 1.6rem 3rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    background-color: rgb(243, 243, 243);
 }
 
-.wrapper_btns {
+.wrapper__search {
+    font-size: 2rem;
+}
+
+.wrapper__btns {
     display: flex;
-    gap: 0.8rem;
+    gap: 1rem;
 }
 
+.cart_icon {
+    width: 30px;
+}
+
+.heart_icon {
+    width: 28px;
+}

@@ -1,0 +1,22 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.favorite__items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+}
+
+.favorite__actions {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+}
+
+.favorite__button {
+    width: 200px;
+}

@@ -1,4 +1,4 @@
-.wrapper_product_details {
+/* .wrapper_product_details {
     display: flex;
     max-width: 100%;
     gap: 5%;
@@ -24,7 +24,8 @@
     font-size: 3rem;
 }
 
-.product_details__desctiption_title, .product_details__info_title {
+.product_details__desctiption_title,
+.product_details__info_title {
     font-size: 2rem;
     background-color: var(--colors__gray-extra);
     text-align: center;
@@ -50,4 +51,8 @@
     gap: 0.5rem;
     justify-content: center;
     align-items: center;
-}
+} */
+
+/* .product_details__button {
+    font-size: 1.5rem !important;
+} */
